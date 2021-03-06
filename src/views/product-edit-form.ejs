@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>Edición Curso</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+        <main class="container">
+            <div class="row">
+                <div class="box">
+                <div class="offset-lg-2 col-lg-8 col-sm-6 col-12">
+                    <form
+                        action="/products/<%= product.id %>?_method=PUT"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        <div class="form-group padding-top">
+                            <label for="name">Nombre del curso</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                id="name"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.name %>"
+                                <% } else { %>
+                                    value="<%= product.name %>"
+                                <% } %>     
+                            />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { for(let
+                                error of errors){ if (error.param == "name") {
+                                %> <%= error.msg %> <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duración del curso</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="duration"
+                                id="duration"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.duration %>"
+                                <% } else { %>
+                                    value="<%= product.duration %>"
+                                <% } %>     
+                            />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { for(let
+                                error of errors){ if (error.param == "duration") {
+                                %> <%= error.msg %> <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="mentor_id">Mentor</label>
+                            <select 
+                                name="mentor"
+                                class="form-control"
+                                id="mentor"
+                            >
+                                <% mentors.forEach(mentor => { %>
+                                    <option value="<%= mentor.id %>"
+                                        <% if (product.mentor.id == mentor.id) { %>
+                                            selected
+                                        <% } %>    
+                                    ><%= mentor.name + " " + mentor.lastname %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group padding-top">
+                            <label for="price">Precio</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="price"
+                                id="price"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.price %>"
+                                <% } else { %>
+                                    value="<%= product.price %>"
+                                <% } %>     
+                            />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { for(let
+                                error of errors){ if (error.param == "price") {
+                                %> <%= error.msg %> <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group padding-top">
+                            <label for="discount">Descuento</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="discount"
+                                id="discount"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.discount %>"
+                                <% } else { %>
+                                    value="<%= product.discount %>"
+                                <% } %>    
+                            />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { for(let
+                                error of errors){ if (error.param == "discount") {
+                                %> <%= error.msg %> <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group padding-top">
+                            <label for="category">Categoría</label>
+                            <select 
+                                name="category"
+                                class="form-control"
+                                id="category"
+                                multiple
+                            >
+                            <% categories.forEach(category => { %>
+                                <option value="<%= category.id %>"
+                                <% product.categories.forEach(productCategory => { %>
+                                    <% if (productCategory.id == category.id) { %>
+                                        selected
+                                    <% } %> 
+                                <% }) %>  
+                                ><%= category.name %></option>
+                            <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group padding-top">
+                            <label for="description">Descripción</label>
+                            <textarea
+                                class="form-control"
+                                name="description"
+                                id="description"
+                                rows="6"
+                                cols="100"
+                            ><% if(typeof value != "undefined"){ %><%= value.description %><% } else { %><%= product.description %><% } %>
+                            </textarea>
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { for(let
+                                error of errors){ if (error.param == "description") {
+                                %> <%= error.msg %> <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Foto del curso</label>
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                name="image"
+                                id="image"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Modificar curso
+                        </button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include("./partials/footer") %>
+
+        <!-- Scripts Bootstrap -->
+        <%- include("./partials/scripts") %>
+        <!-- /Scripts -->
+    </body>
+</html>

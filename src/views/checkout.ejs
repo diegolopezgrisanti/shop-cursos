@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Comprar curso'}) %>
+<body>
+	<!-- Header -->
+	<%- include("partials/header.ejs")  %>
+	<!-- /Header -->
+
+    <main>
+        <form class="credit-card-div my-5" id="checkoutForm">
+            <div class="container credit-form">
+                <div class="panel panel-default" >
+                    <div class="panel-heading">
+                        <div>
+                            <% for( let product of products) { %>  
+                                <div>
+                                    <%= product.name %> $<%= product.discounted_price %>  
+                                </div>
+                                <hr/>
+                            <% } %>
+                            <div>TOTAL: $<span ><%= products.reduce((accum, product)=>{
+                                return accum += +product.discounted_price;
+                            }, 0) %></span> </div>
+                        </div>
+        
+                        <input type="hidden" name="total" value="<%= products.reduce((accum, product)=>{
+                            return accum += +product.discounted_price;
+                        }, 0) %>"/>
+        
+                        <input type="hidden" name="userId" value="<%= typeof user != 'undefined' ? user.id : null %>"/>
+        
+                        <div class="row d-flex justify-content-center">
+                                <div class="col-md-4 ">
+                                    <input type="text" name="cardNumber" class="form-control" placeholder="Enter Card Number" />
+                                </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <span class="help-block text-muted small-font" > Expiry Month</span>
+                                    <input type="text" name="cardMonth" class="form-control" placeholder="MM" />
+                                </div>
+                            <div class="col-md-1 col-sm-2 col-xs-2">
+                                    <span class="help-block text-muted small-font" >  Expiry Year</span>
+                                    <input type="text" name="cardYear" class="form-control" placeholder="YY" />
+                                </div>
+                            <div class="col-md-1 col-sm-2 col-xs-2">
+                                    <span class="help-block text-muted small-font" >  CCV</span>
+                                    <input type="text" name="cardCCV" class="form-control" placeholder="CCV" />
+                                </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-4 pad-adjust">
+                                <input type="text" name="cardName" class="form-control" placeholder="Name On The Card" />
+                            </div>
+                        </div>
+        
+                        <div class="row d-flex justify-content-center">
+                                <div class="col-md-2 col-sm-2 col-xs-2 pad-adjust">
+                                    <button type="submit"  class="btn btn-warning btn-block" >PAY NOW</button>
+                                </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <!-- footer -->
+	<%- include('partials/footer') %>
+	<%- include("partials/scripts.ejs")  %> 
+	<!-- /footer -->
+</body>	
+</html>

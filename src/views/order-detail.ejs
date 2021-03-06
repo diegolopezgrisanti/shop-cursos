@@ -1,0 +1,16 @@
+!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head.ejs", { title : 'Order'})  %> 
+<body>
+    <%- include("partials/header.ejs")  %>
+
+    <main class="">
+        <h1>Detalle del pedido</h1>
+        <pre><%= JSON.stringify(order) %> </pre>
+
+    </main>
+
+    <%- include("partials/footer.ejs")  %>
+    <%- include("partials/scripts.ejs")  %> 
+</body>
+</html>

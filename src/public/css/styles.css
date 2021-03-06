@@ -1,0 +1,370 @@
+/*====== Fonts ======*/
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+/*====== Variables ======*/
+:root {
+    --gray: #666666;
+    --light-gray: #fcfcfc;
+    --green: #39b54a;
+    --base-font-family: "Oswald", sans-serif;
+    --lato-font: "Lato", sans-serif;
+    --dark-green: #7c8500;
+    --green: #afb42b;
+    --light-green: #e4e65e;
+    --light-yellow: #ffff6b;
+    --yellow: #fdd835;
+    --dark-yellow: #c6a700;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--lato-font);
+    font-weight: 300;
+    background: #eff7fe;
+    background-color: var(--light-gray);
+}
+
+main {
+    min-height: 82vh;
+    margin: 0;
+    margin-bottom: 5vh;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    color: inherit;
+    text-decoration: none;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+}
+
+.main-section {
+    border: 1px solid var(--green);
+    background-color: #fff;
+}
+
+
+
+.box {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 30px 10%;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+}
+
+
+.navbar{
+    background-color: var(--dark-green);
+    font-weight: bold;
+    color: white
+}
+
+.navbar a:hover{
+    color: var(--light-yellow);
+}
+
+.buscador {
+    margin-bottom: 0px;
+    width: 400px;
+}
+
+.buscador input{
+    background-color: transparent;
+    border: 1px var(--yellow) solid;
+    color: var(--yellow);
+}
+
+.buscador input::placeholder{
+    color: var(--green);
+}
+
+.buscador input:focus{
+    background-color: transparent;
+    border: 1px var(--yellow) solid;
+    color: var(--yellow);
+}
+
+.logo {
+    height: 50px;
+    width: 150px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.btn-primary{
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+}
+
+.btn-primary:hover{
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.btn-outline-primary{
+    color: var(--dark-green);
+    border-color: var(--dark-green);
+}
+
+.btn-outline-primary:hover{
+    color: var(--green);
+    border-color: var(--green);
+    background-color: transparent;
+}
+
+.btn-outline-info{
+    color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.btn-outline-info:hover{
+    color: var(--dark-yellow);
+    border-color: var(--dark-yellow);
+    background-color: transparent;
+}
+
+.btn-secondary {
+    background-color: var(--green);
+    color: white !important;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-green); 
+}
+
+.badge-info{
+    background-color: var(--green);
+}
+
+/* HOME */
+
+.parallax {
+    background-image: url("../images/digital-lab-banner.png");
+    height: 500px;
+    background-attachment: fixed;
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.banner-box {
+    width: 45%;
+    margin-right: 10%;
+
+}
+
+
+.parallax h1{
+    color: var(--dark-green);
+    font-size: 2rem;
+    font-family: var(--lato-font);
+    text-transform: uppercase;
+
+    
+}
+
+.parallax p {
+    margin: 20px 0;
+    font-size: 1.5rem;
+}
+
+.box-home {
+    background-color: white;
+    padding: 5rem;
+    margin-bottom: 50px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.home-sale .prod-img {
+    height: 150px !important;
+    object-fit: contain;
+}
+
+.on-sale-tittle {
+    color: var(--dark-green);
+    font-size: 2rem;
+}
+
+
+/* ====== Footer ====== */
+footer {
+    background-color: var(--dark-green);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.social-media a i{
+    font-size: 30px;
+    margin: 20px;
+    color: white;
+}
+
+.social-media a i:hover{
+    color: var(--yellow); 
+}
+
+footer .copyright {
+    font-size: 13px;
+    margin: 0 10px 10px;
+}
+
+
+/* ====== Products ====== */
+.products-wrapper {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.products-title {
+    font-size: 2em;
+    font-weight: 400;
+    color: var(--gray);
+}
+
+.product-title {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: var(--gray);
+}
+
+.products-wrapper section {
+    width: 100%;
+}
+
+.products-grid-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media(max-width: 768px){
+    .products-grid-container{
+        grid-template-columns: repeat(2, 1fr);
+      }
+}
+
+@media(max-width: 500px){
+    .products-grid-container{
+        grid-template-columns: 1fr;
+      }
+}
+
+.product-box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 20px 10px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.product-box:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.product-box a {
+    display: block;
+    text-decoration: none;
+}
+
+.product-box_image {
+    border-bottom: 1px solid var(--light-gray);
+    height: 300px;
+}
+
+.product-box_image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;    
+}
+
+.product-box_data {
+    padding: 15px;
+}
+
+.product-box_data h2 {
+    font-size: 2.4em;
+    font-weight: 300;
+    margin: 0;
+    color: var(--gray);
+}
+
+.product-discount {
+    font-size: 1.2em;
+    font-weight: 300;
+    color: var(--green);
+}
+
+.product-link {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: var(--green);
+}
+
+.product-link:hover {
+    color: var(--dark-green);
+}
+
+.comentarios-rating {
+    background-color: #dfdddd;
+    height: 55px;
+    padding-top: 15;
+}
+
+.product-detail-description{
+    display: flex;
+}
+
+/* ====== Profile ====== */
+.profile-header {
+    background-color:var(--green);
+    height: 150px;
+}
+.user-detail {
+    margin: -50px 0px 30px 0px;
+}
+.user-detail img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px auto;
+}
+.user-detail h5 {
+    margin: 15px 0px 5px 0px;
+}
+.user-social-detail {
+    padding: 15px 0px;
+    background-color: var(--green);
+}
+.user-social-detail a i {
+    color: #fff;
+    font-size: 23px;
+    padding: 0px 5px;
+}
+.padding-top {
+    padding-top: 15px;
+}

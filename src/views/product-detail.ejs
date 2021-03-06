@@ -1,0 +1,99 @@
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>Shop Cursos</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+
+        <!-- product detail -->
+        <main>
+            <div class="container products-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="products-title">
+                            Detalle del producto: <%= product.name %>
+                        </h2>
+                    </div>
+                </div>
+                <div class="product-detail">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <img
+                                src="/images/products/<%= product.images.length ? product.images[0].filename : 'no-image.jpg' %>"
+                                alt="product image"
+                                class="product-detail-img"
+                            />
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="row">
+                                <article class="">
+                                    <h2 class="">
+                                        <%= product.name %>
+                                    </h2>
+                                    <h5> Curso dictado por : <%= `${product.mentor.name} ${product.mentor.lastname}`%></h5>
+                                    <% product.categories.forEach(category => { %>
+                                        <span class="badge badge-info "><%= category.name %> </span>
+                                    <% }) %>
+                                    <p class="">
+                                        <% if (product.discount > 0) { %>
+                                        <span>$<%= product.price %></span>
+                                        /
+                                        <b><%= product.discount %>% OFF</b>
+                                    </p>
+                                    <%} %>
+                                    <p class="">
+                                        $ <%= product.discounted_price %>
+                                    </p>
+                                    <div>
+                                        <p class="text-break">
+                                            <%= product.description %>
+                                        </p>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-outline-success mb-2" onclick="buyProduct('<%= product.id %>', '<%= product.name %>', '<%= product.discounted_price %>' )">Comprar curso</button>
+                                    <button type="button" class="btn btn-outline-info mb-2" onclick="addToShoppingCart('<%= product.id %>', '<%= product.name %>', '<%= product.discounted_price %>' )">Añadir al carrito</button>
+                                                  
+                                    <% if (userLogueado && user.roles.some(role => role.name == "admin")) { %>
+                                    <div>
+                                        
+                                    <form
+                                        action="/products/<%= product.id %>?_method=DELETE"
+                                        method="POST"
+                                        style="display: inline-flex; margin: 0;"
+                                    >
+                                        <a
+                                        href="/products/<%= product.id %>/edit"
+                                        class="btn btn-outline-primary mr-2"
+                                        >EDITAR PRODUCTO</a>
+    
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            ELIMINAR
+                                        </button>
+                                    </form>
+                                    </div>
+                                    <% } %>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- /product detail -->
+
+        <!-- footer -->
+        <%- include('partials/footer') %>
+        <!-- /footer -->
+        <!-- Scripts Bootstrap -->
+        <%- include("./partials/scripts") %>
+        <!-- /Scripts -->
+    </body>
+</html>

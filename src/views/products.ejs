@@ -1,0 +1,74 @@
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>Shop Cursos</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+
+        <main class="container">
+            <div class="products-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="products-title">
+                            <%= typeof search == "undefined" ? 'Todos los cursos' : 'Resultados de la búsqueda: ' + search %> 
+                        </h2>
+                    </div> 
+                </div>
+                <% if (typeof search != "undefined" && productsAll.length == 0) { %>
+                    <div>
+                        <h2>
+                            No se encontraron resultados.
+                        </h2>
+                    </div>
+                <% } %> 
+            </div>
+
+            <section class="products-grid-container">
+                <% for (let product of productsAll) { %>
+                                  
+                <article class="product-box">
+                        <div class="product-box_data">
+                            <h3 class="product-title"><%= product.name %></h3>
+                        </div>
+                        <div class="product-box_image">
+                            <img
+                                src="/images/products/<%= product.images.length ? product.images[0].filename : 'no-image.jpg' %>"
+                                alt="imagen de producto"
+                            />
+                        </div>
+                        <div class="product-box_data">
+                            <h2>$<%= product.price %></h2>
+                            <% if (product.discount > 0) { %>
+                            <span class="product-discount"><%= product.discount %>% OFF</span>
+                            <% } %>
+
+                            <div>
+                                <p class="text-truncate"><%= product.description %></p>
+                            </div>
+                            <div class="product-link mb-3">
+                                <a href="/products/detail/<%= product.id %>">Ver curso</a>
+                            </div>
+
+                            <button type="button" class="btn btn-primary mb-2" onclick="buyProduct('<%= product.id %>', '<%= product.name %>', '<%= product.discounted_price %>' )">Comprar curso</button>
+                            <button type="button" class="btn btn-outline-primary mb-2" onclick="addToShoppingCart('<%= product.id %>', '<%= product.name %>', '<%= product.discounted_price %>' )">Añadir al carrito</button>
+                
+                        </div>
+                
+                </article>
+                <% } %>
+            </section>
+        </main>
+        <!-- /todos los productos -->
+
+        <%- include("./partials/footer") %>
+
+        <!-- Scripts Bootstrap -->
+        <%- include("./partials/scripts") %>
+        <!-- /Scripts -->
+    </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>Edición Usuario</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+        <main class="container">
+            <div class="row">
+                <div class="box">
+                <div class="offset-lg-2 col-lg-8 col-sm-6 col-12">
+                    <form
+                        action="/users/<%= user.id %>?_method=PUT"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        <div class="form-group padding-top">
+                            <label for="formGroupExampleInput">Nombre</label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                id="formGroupExampleInput"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.name %>"
+                                <% } else { %>
+                                    value="<%= user.name %>"
+                                <% } %>     
+                            />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { for(let
+                                error of errors){ if (error.param == "name") {
+                                %> <%= error.msg %> <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Apellido</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="lastname"
+                                id="formGroupExampleInput2"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.lastname %>" 
+                                    <% } else { %>
+                                        value="<%= user.lastname %>"
+                                    <% } %>     
+                                />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { 
+                                    for(let error of errors) { 
+                                        if (error.param == "lastname") {
+                                %> 
+                                <%= error.msg %> 
+                                <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="email"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                <% if(typeof value != "undefined"){ %>
+                                    value="<%= value.email %>" 
+                                    <% } else { %>
+                                        value="<%= user.email %>"
+                                    <% } %>     
+                                />
+                            <small id="emailHelp" class="form-text text-danger">
+                                <% if (typeof errors != "undefined") { 
+                                    for(let error of errors) { 
+                                        if (error.param == "email") {
+                                %> 
+                                <%= error.msg %> 
+                                <% }}} %>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1"
+                                >Foto de perfil</label
+                            >
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                name="avatar"
+                                id="exampleFormControlFile1"
+                            />
+                            <% if (typeof errors != 'undefined') { %>
+                                <% for(let error of errors) { %>
+                                      <% if (error.param == "avatar") { %>
+                                        <small class="orm-text text-danger">
+                                          <%= error.msg %> 
+                                        </small> 
+                                      <% } %> 
+                                <% } %>
+                            <% } %>  
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Modificar usuario
+                        </button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include("./partials/footer") %>
+
+        <!-- Scripts Bootstrap -->
+        <%- include("./partials/scripts") %>
+        <!-- /Scripts -->
+    </body>
+</html>

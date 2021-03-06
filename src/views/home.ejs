@@ -1,0 +1,85 @@
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>Shop Cursos</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+
+        <main class="">
+            <div class="parallax" >
+                <div class="banner-box">
+                    <h1>Tu curso hacia el éxito!</h1>
+                    <p>Estudia desde la comodidad de tu casa y sumate a la transformación digital.</p>
+                    <a class="btn btn-secondary btn-lg">Registrate ahora</a>
+                </div>
+            </div>
+
+            <div class="box-home">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <article class="text-center">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h4>Aprende desde cero</h4>
+                            <p>Programar no tiene que ser tan dificil. Aprende los fundamentos desde cero y obtén una base sólida.</p>
+                        </article>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <article class="text-center">
+                            <i class="fas fa-clock"></i>
+                            <h4>Estudia a tu ritmo y profundiza</h4>
+                            <p>Contamos con más de 800 horas de contenido para que aprendas más allá de lo básico. Cursos teóricos y prácticos con proyectos.</p>
+                        </article>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <article class="text-center">
+                            <i class="fas fa-user-graduate"></i>
+                            <h4>Prepárate para el futuro</h4>
+                            <p>Consigue las habilidades que tu carrera profesional necesita.</p>
+                        </article>
+                    </div>
+                </div>
+            </div> 
+            
+            
+            <div class="on-sale-tittle ml-4 mt-3">
+                <p>Cursos on Sale</p>
+            </div>
+            <div class="d-flex justify-content-between mb-5 mx-4 home-sale">
+                <% for( let product of products) { %>  
+                  <div class="card m-2 " style="width: 15rem;">
+                    <img src="/images/products/<%= product.images.length ? product.images[0].filename : 'no-image.jpg' %> "  class="prod-img" alt="...">
+                    <div class="card-body">
+                      <a href="/products/<%= product.id %> ">
+                        <h5 class="card-title"><%= product.name %> </h5>
+                      </a>
+                      <p class="card-text text-truncate" data-toggle="tooltip" title="<%= product.description %>"><%= product.description %> </p>
+                      <p class="card-text"><a class="card-text text-bold" href="/products/<%= product.id %>" >Ver más</a></p>
+                      <p class="discounted-price">$ <%= product.price %>  / <%= product.discount %>  % OFF</p>
+                      <h1 class="price">$ <%= product.discounted_price %> </h1>
+          
+                      
+          
+                      <% if (userLogueado && user.roles.some(role => role.name == "admin")) { %>
+                        <div class="row d-flex justify-content-around">
+                        <a href="/products/<%= product.id %>/edit" type="button" class="btn btn-outline-info mb-2">Editar curso</a>
+                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST"><button type="submit" class=" btn btn-danger mb-2"> Borrar curso</button></form>
+                      </div>
+                      <% } %> 
+                    </div>
+                  </div>
+                <% } %>
+              </div>
+        </main>
+
+        <%- include("./partials/footer") %>
+
+        <!-- Scripts Bootstrap -->
+        <%- include("./partials/scripts") %>
+        <!-- /Scripts -->
+    </body>
+</html>

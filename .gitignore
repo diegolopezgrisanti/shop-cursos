@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.env
+
+# Images
+src/public/images/avatars/avatar-*
+src/public/images/products/image-*

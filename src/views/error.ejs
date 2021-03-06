@@ -1,0 +1,24 @@
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>ERROR - Shop Cursos</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+
+        <main class="container">
+            <h1>OOPS! ERROR <%= error.status %>  :(</h1>
+            <h2><%= error.message %> </h2>
+        </main>
+
+        <%- include("./partials/footer") %>
+
+        <!-- Scripts Bootstrap -->
+        <%- include("./partials/scripts") %>
+        <!-- /Scripts -->
+    </body>
+</html>

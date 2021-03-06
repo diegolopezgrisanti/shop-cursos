@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <%- include("./partials/head") %>
+    <!-- /Head -->
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <%- include("./partials/header") %>
+        <!-- /Header -->
+
+       <main>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="offset-lg-1 col-lg-10 col-sm-6 col-12 mb-5 main-section text-center">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-12 profile-header">
+                        </div>
+                    </div>
+                    <div class="row user-detail">
+                        <div class="col-lg-12 col-sm-12 col-12">
+                            <img
+                                src="/images/avatars/<%= user.avatar ? user.avatar : 'no-photo.jpg' %>"
+                                class="rounded-circle img-thumbnail"
+                            />
+                            <h5><%= user.name %> <%= user.lastname %></h5>
+                            <hr />
+                            <div style="display: inline-flex">
+                            <a href="/users/<%= user.id %>/edit" class="btn btn-outline-primary mr-2 btn-sm" 
+                                >Editar Perfil</a
+                            >
+                            <form
+                                action="/users/<%= user.id %>?_method=DELETE"
+                                method="POST"
+                            >
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-sm"
+                                >Eliminar Perfil
+                                </button>
+                            </form>
+                            </div>
+                            <hr />
+                            <span
+                                ><b>EMAIL:</b> <%= user.email %> </span
+                            >
+                        </div>
+                    </div>
+                    <div class="row user-social-detail">
+                        <div class="col-lg-12 col-sm-12 col-12">
+                            <a href="#"
+                                ><i
+                                    class="fa fa-facebook"
+                                    aria-hidden="true"
+                                ></i
+                            ></a>
+                            <a href="#"
+                                ><i
+                                    class="fa fa-google-plus"
+                                    aria-hidden="true"
+                                ></i
+                            ></a>
+                            <a href="#"
+                                ><i class="fa fa-twitter" aria-hidden="true"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </main>
+
+        <%- include("partials/footer.ejs")  %> 
+        <%- include("partials/scripts.ejs")  %> 
+    </body>
+</html>
